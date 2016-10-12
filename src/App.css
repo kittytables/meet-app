@@ -1,0 +1,58 @@
+content {
+    position: absolute;
+    width: 100%;
+}
+
+input, button, select, textarea {
+    width: 300px;
+    height: 45px;
+}
+
+.App-main {
+    margin-top: 100px;
+
+}
+
+.App-main label {
+    display: block;
+    margin: 20px 0 5px;
+    text-align: left;
+    color: #ff66ff;
+}
+
+.App-main input {
+    border: 3px solid #ffff33;
+    padding: 0 8px;
+}
+
+.App-main button {
+    padding: 0 8px;
+    background-color: #ffff33;
+    color: #ff1a75;
+    font-weight: bold;
+    box-sizing: content-box;
+}
+
+.App-main form {
+    width: 300px;
+    margin: auto;
+}
+
+.App-main {
+    margin-top: 50px;
+}
+
+.App-main .subtext {
+    color: #ff66ff;
+    font-size: 12px;
+}
+
+.App-main .error-message {
+    color: #ff0010;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.App-main .invalid {
+    border: 3px solid #ff0010;
+}
