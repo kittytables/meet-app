@@ -12,7 +12,7 @@ export default class App extends Component {
       super(props);
 
       this.state = {
-        currentPage: 'login',
+        currentPage: 'signup',
       };
 
       this.setCurrentPage = this.setCurrentPage.bind(this);
@@ -56,4 +56,3 @@ export default class App extends Component {
 
   }
 }
-
