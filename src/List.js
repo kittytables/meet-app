@@ -61,4 +61,3 @@ var EventTable = React.createClass({
     );
   }
 });
-
