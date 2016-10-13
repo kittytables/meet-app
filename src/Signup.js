@@ -16,6 +16,7 @@ export default class Signup extends Component {
             hasEmailError: null,
             hasPasswordError: null,
             hasConfirmPasswordError: null,
+
         };
     }
 
@@ -121,7 +122,8 @@ export default class Signup extends Component {
                 <button
                     type="submit"
                     onClick={this.submit}
-                >Submit</button>
+                    disabled={}>
+                    Submit</button>
 
                 <span className="subtext">
                     <a href="#" onClick={() => this.props.setCurrentPage('login')}>Login</a> to your account
