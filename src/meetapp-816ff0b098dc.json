@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "meetapp-ab3f2",
+  "private_key_id": "816ff0b098dc8c67c72d18c5281da91988a91816",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC5FXm2TW0YFmcS\nKUmFEdySulGBxU2qlHLgnZIBnrM/nG1qrvNmaJcglqMetnhFPGKehXMUrLSQ49n5\nCEmBVCSiKy+6zwyL7N3dFxNI0Ik3mmVxhT4ClLHitj0oGDbF4nHiEnkRSgo/QFSI\nYNkuQJcSQpzL9iUtdxSLbElGEroAycrr/Lkue7vbdbl6FMmKcxZJNhF1fXd1TSWH\nd4xGRBnh4Cn+QQa77keADcveNHoXH3QYdgkYIS6Q4vuyGtqzqiE+VWq9m/3WsLLA\nK+LGk2y7sSRnGlI/Ii8JgPGkPrlO+VBbCb0C6Gmg9owpr9tX4gr+V6IfRuxSnZS3\no/VckEcbAgMBAAECggEBAJMf/yBra806AbTuHQMqr6vzb9c4gASY/LiQiP/Ap7xp\nHJExgUpm2buOAxzm77QZzEs2ycQlhWOnvB25+LRVrsk6izZ0YATaxYJ6VVoMawdI\nNFuJD0H98WnGc9braJ7k4qJTDOoxcPPWr1u5oOqjbXOWgA2iHOuHPU2XRqftOu5k\nICxjh1dthpBmfEXCcsnPLu3WEKtE2Lf/JnyLPilOp+meO5WzQra//7MEjx4PD5KH\nitecUXxaFTnJkYUsBG0JwYS1jHSWN//Ct4LRjZWlQq4sgBcZE4NHbZQYEuJMFCBJ\nESPi4ysvvrqP2Oe0tfDmDsDYJ5YQtnkhgK4yrLTJqAECgYEA4L1iwfVQ8AKDuJgJ\njUIiPjRAgxigKEDap2x9GVTN5zKoenRcpGa7yhmOFd+nxHhrXQPQQx4nSVcjivW4\n6H2bvdf5+p6jzd2ycVKS7A/vh9yBTuQ5bW5FD8Cme4DaegLLdbMhfkhoz19eyKqr\nN9ZAiW6rddDDiKRH47XwlDg5pNkCgYEA0tQCH9FwJw/CxEhC8B04WVrAumK79AQ2\nRiVtRCO319U9yvWIvuccNSFJ6+rnD2acC0qMaWSw2IxPHBBdfvt9fb8Wyx4ri7KS\nbR2rwL3wMnT4QV2k7hyGZUgyVDNHXFPl5/VVBq3TXfrCcIK5pJRc8pa2+1UnzzC7\nnl/MF6uegxMCgYEA2hApERXdEOT/tk8fhYbT/xNoPUvZqvUytB0aTUfx+hE3VIov\nkf103SZqrWK0QHivhDM9EsLhT9JTVHQUlNG8GjrD/Z+MRSaGDFsY4CCeRG96sHfW\nGQ5TyHMfltpyIs0vaecD6qqLuBtLtt2TALzNJgzSJaEI+T6d2p8g7lCX7hECgYBf\nYCnV2xmxkh+6TDZ8CbwEMFof96qvqXgkI6pauQ3iRkW+G3XRZxwLrROT9qCxBupw\n8Ti0NSkLze279GtXls4epOPa37szZ4V2d4XLnCGdsezdJVAHqD/kcdTS4p/V1N6d\nIQ9mBh0o1tg/rePt4HBsDmKZMNzhjlpSO2RJEQqUoQKBgAsiD/kApN1P9d6PSEvt\nvR3ul1VH/8SVZIMg5iNaOJfuEP+eBpagp2984ndrUoKNzfrBXTxJOoplPKyBxm2u\nxi9xJ+/jNleqQjzYDfbgU7P88HjrQu5Vrt/menC4+1Dwud+uJfvum7e/quT+4JT/\ni4wkhoNZBNqmKS/9++ZUPRNq\n-----END PRIVATE KEY-----\n",
+  "client_email": "meetapp@meetapp-ab3f2.iam.gserviceaccount.com",
+  "client_id": "116253634410337866878",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/meetapp%40meetapp-ab3f2.iam.gserviceaccount.com"
+}

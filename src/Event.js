@@ -4,9 +4,9 @@ import './Event.css';
 
 export default class Event extends Component {
 
-    getInitialState() {
+    /*getInitialState() {
         return {data: []};
-    }
+    }*/
 
     onSubmit() {
     }
