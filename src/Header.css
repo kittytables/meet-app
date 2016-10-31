@@ -23,3 +23,9 @@ header {
     font-family: 'Work Sans', sans-serif;
 }
 
+.logout {
+    float: right;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px;
+}

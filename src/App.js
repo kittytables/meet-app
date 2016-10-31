@@ -20,24 +20,23 @@ var fbase = firebase.initializeApp(config);
 
 export default class App extends Component {
  constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        currentPage: 'signup',
+    this.state = {
+        currentPage: 'login',
         signedIn: null,
-      };
+        user: null,
+    };
 
-      this.setCurrentPage = this.setCurrentPage.bind(this);
-      this.ref = firebase.database().ref();
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            this.setState({signedIn: true, user: user});
+            this.setCurrentPage('list');
+        }
+    });
 
-      firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            this.setState({signedIn: true});
-            this.setCurrentPage('events');
-          } else {
-            // No user is signed in.
-          }
-        });
+    this.setCurrentPage = this.setCurrentPage.bind(this);
+    this.ref = firebase.database().ref();
   }
 
 signOut = () => {
@@ -49,17 +48,25 @@ signOut = () => {
     });
 }
 
+getUser = () => {
+    return this.state.user;
+}
+
  getCurrentPage() {
     if (this.state.currentPage === 'events') {
-      return <Event />;
+      return <Event db={this.ref} getUser={this.getUser} setCurrentPage={this.setCurrentPage}/>;
     }
 
     if (this.state.currentPage === 'signup') {
-      return <Signup setCurrentPage={this.setCurrentPage} db={this.ref} fbase={fbase}/>;
+      return <Signup setCurrentPage={this.setCurrentPage} fbase={fbase}/>;
     }
 
     if (this.state.currentPage === 'login') {
       return <Login setCurrentPage={this.setCurrentPage} fbase={fbase}/>;
+    }
+
+    if (this.state.currentPage === 'list') {
+      return <List getUser={this.getUser} setCurrentPage={this.setCurrentPage} fbase={fbase}/>;
     }
 
     return <div>404 page not found</div>;

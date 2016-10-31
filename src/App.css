@@ -33,7 +33,7 @@ input, button, select, textarea {
     box-sizing: content-box;
 }
 
-.App-main form {
+.App-main form, .App-main .rows {
     width: 300px;
     margin: auto;
 }
@@ -55,4 +55,19 @@ input, button, select, textarea {
 
 .App-main .invalid {
     border: 3px solid #ff0010;
+}
+
+.App-main .event h2 {
+    color: #ff66ff;
+    margin-bottom: 0;
+}
+
+.App-main .event h3 {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.App-main hr {
+    color: #fff;
+    border-style: solid;
 }

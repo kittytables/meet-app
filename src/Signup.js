@@ -19,28 +19,29 @@ export default class Signup extends Component {
             accountError: '',
 
         };
+
+        this.auth = this.props.fbase.auth();
     }
 
     submit = () => {
-        /*var usersRef = this.props.db.child("users");
-        var exists = false;
+        this.auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(() => {
+            var user = this.auth.currentUser;
 
-        usersRef.once('value', (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                if(this.state.email === childSnapshot.val().email) {
-                    exists = true;
-                }
-            })
-            this.saveData(usersRef, exists);
-        });*/
-
-        this.props.fbase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+            if (user) {
+                this.props.fbase.database().ref('users/' + user.uid).set({
+                    name: this.state.name
+                });
+            } else {
+              console.log('error saving user info to database');
+            }
+        }).catch((error) => {
             if(error.code.includes('email-already-in-use')) {
                 this.setState({accountError: 'Account already exists'});
             } else {
                 this.setState({accountError: 'Error creating account'});
             }
         });
+
     }
 
     validateInput = (event, errorKey) => {
@@ -75,23 +76,6 @@ export default class Signup extends Component {
             [errorKey]: null
         });
     }
-
-    saveData = (usersRef, exists) => {
-        if (exists) {
-            this.setState({
-                hasAccountError: true
-            });
-        } else {
-            usersRef.push({
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password
-             });
-
-            this.props.setCurrentPage('login');
-        }
-    }
-
 
     render() {
         return (

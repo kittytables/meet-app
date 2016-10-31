@@ -2,35 +2,43 @@ import React, { Component } from 'react';
 
 import './List.css';
 
-var EVENTS = [
-  {name: 'Gabys Birthday', start: 'Nov 9', end: 'Nov 13', type: 'birthday', guests: 'Gaby, Gaby, Kathleen', location: 'Los Angeles', description: 'trip to celebrate 25th bday'},
-  {name: 'Eid Party', start: 'Sep 12', end: 'Sep 12', type: 'holiday', guests: 'Uzma, Ayesha, Faryal', location: 'Perlas', description: 'Park behind the restaurant'},
-  {name: 'Afternoon Tea', start: 'Sep 24', end: 'Sep 24', type: 'holiday', guests: 'Uzma, Ayesha, Nadia, Kathleen', location: 'Bundricks Tea Parlor', description: '$25 per person'}
-];
-
 export default class List extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            eventList: {}
+        }
+
+        this.props.fbase.database().ref('/events')
+        .orderByChild('userid').equalTo(this.props.getUser().uid)
+        .once('value').then((snapshot) => {
+            this.setState({eventList: snapshot.val()});
+        });
+    }
+
     render() {
         return (
-            <div>
-                 <EventTable events={EVENTS} />
+            <div className="rows">
+                 <EventTable events={this.state.eventList} />
+                 <a href="#" onClick={() => this.props.setCurrentPage('events')}>Create new event</a>
             </div>
         );
     }
 }
 
-
 var EventRow = React.createClass({
   render: function() {
     return (
-      <tr>
-        <td>{this.props.event.name}</td>
-        <td>{this.props.event.start}</td>
-        <td>{this.props.event.end}</td>
-        <td>{this.props.event.type}</td>
-        <td>{this.props.event.guests}</td>
-        <td>{this.props.event.location}</td>
-        <td>{this.props.event.description}</td>
-      </tr>
+        <div className="event">
+            <h2>{this.props.event.name}</h2>
+            <h3><b>{this.props.event.start} - {this.props.event.end}</b><br/>
+            @ {this.props.event.location}</h3>
+            <p>{this.props.event.description}</p>
+            <b>Type of event:</b> {this.props.event.type}<br/>
+            <b>Attendees:</b> {this.props.event.guests}
+            <hr/>
+        </div>
     );
   }
 });
@@ -39,25 +47,15 @@ var EventTable = React.createClass({
   render: function() {
     var rows = [];
 
-    this.props.events.forEach(function(event) {
+    for(var key in this.props.events) {
+        rows.push(<EventRow event={this.props.events[key]} key={this.props.events[key].name} />);
+    }
 
-      rows.push(<EventRow event={event} key={event.name} />);
-    });
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Type</th>
-            <th>Guests</th>
-            <th>Location</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <div>
+        <hr/>
+        {rows}
+      </div>
     );
   }
 });
