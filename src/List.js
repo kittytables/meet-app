@@ -20,8 +20,9 @@ export default class List extends Component {
     render() {
         return (
             <div className="rows">
-                 <EventTable events={this.state.eventList} />
-                 <a href="#" onClick={() => this.props.setCurrentPage('events')}>Create new event</a>
+                <a href="#" className="new-event" onClick={() => this.props.setCurrentPage('events')}>
+                Create a new event</a>
+                <EventTable events={this.state.eventList} />
             </div>
         );
     }

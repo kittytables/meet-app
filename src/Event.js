@@ -38,6 +38,10 @@ export default class Event extends Component {
 
     render() {
         return (
+            <div className="rows">
+            <a href="#" className="new-event" onClick={() => this.props.setCurrentPage('list')}>
+                Back to event list
+            </a>
             <form>
                 <label htmlFor="event">Event Name <br/>
                     <input id="event" autoFocus="true" required
@@ -86,6 +90,7 @@ export default class Event extends Component {
 
                 <button type="Submit" onClick={this.submit}>Create Event</button>
             </form>
+            </div>
         );
     }
 }
