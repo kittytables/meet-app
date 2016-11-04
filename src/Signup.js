@@ -16,7 +16,8 @@ export default class Signup extends Component {
             hasEmailError: null,
             hasPasswordError: null,
             hasConfirmPasswordError: null,
-            accountError: '',
+            hasFormError: null,
+            formError: '',
 
         };
 
@@ -36,9 +37,9 @@ export default class Signup extends Component {
             }
         }).catch((error) => {
             if(error.code.includes('email-already-in-use')) {
-                this.setState({accountError: 'Account already exists'});
+                this.setState({formError: 'Account already exists'});
             } else {
-                this.setState({accountError: 'Error creating account'});
+                this.setState({formError: 'Error creating account'});
             }
         });
 
@@ -62,6 +63,24 @@ export default class Signup extends Component {
             this.setState({
                 hasConfirmPasswordError: this.state.password !== this.state.confirmPassword ? true : false
             });
+        }
+    }
+
+    validateForm = (event) => {
+        event.preventDefault();
+        if (this.state.hasEmailError || this.state.hasPasswordError || this.state.hasConfirmPasswordError) {
+            this.setState({
+                formError: ''
+            });
+        } else if (!this.state.name || !this.state.email || !this.state.password || !this.state.confirmPassword) {
+            this.setState({
+                formError: 'Please fill out all form inputs.'
+            });
+        } else {
+            this.setState({
+                formError: ''
+            });
+            this.submit();
         }
     }
 
@@ -154,13 +173,10 @@ export default class Signup extends Component {
 
                 <button
                     type="submit"
-                    onClick={this.submit}
-                    disabled={!this.state.name || !this.state.email || !this.state.password
-                        || !this.state.confirmPassword || this.state.hasEmailError ||
-                        this.state.hasPasswordError || this.state.hasConfirmPasswordError}>
+                    onClick={this.validateForm}>
                     Submit</button>
                     <div className="error-message">
-                        {this.state.accountError} <br/>
+                        {this.state.formError} <br/>
                     </div>
 
                 <span className="subtext">

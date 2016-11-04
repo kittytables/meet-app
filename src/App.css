@@ -62,6 +62,10 @@ input, button, select, textarea {
     font-size: 20px;
 }
 
+.App-main .event {
+    margin: 40px 0;
+}
+
 .App-main .event h2 {
     color: #ff66ff;
     margin-bottom: 0;
@@ -75,4 +79,5 @@ input, button, select, textarea {
 .App-main hr {
     color: #fff;
     border-style: solid;
+    margin-top: 20px;
 }

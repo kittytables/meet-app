@@ -33,12 +33,13 @@ var EventRow = React.createClass({
     return (
         <div className="event">
             <h2>{this.props.event.name}</h2>
-            <h3><b>{this.props.event.start} - {this.props.event.end}</b><br/>
+            <h3><b>{this.props.event.start} {this.props.event.end && (<span>-</span>)} {this.props.event.end}</b><br/>
             @ {this.props.event.location}</h3>
             <p>{this.props.event.description}</p>
             <b>Type of event:</b> {this.props.event.type}<br/>
-            <b>Attendees:</b> {this.props.event.guests}
-            <hr/>
+            {this.props.event.guests && (
+                <b>Attendees:</b>
+            )} {this.props.event.guests}
         </div>
     );
   }
@@ -54,7 +55,6 @@ var EventTable = React.createClass({
 
     return (
       <div>
-        <hr/>
         {rows}
       </div>
     );
