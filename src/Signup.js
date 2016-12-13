@@ -53,9 +53,7 @@ export default class Signup extends Component {
     }
 
     validatePassword = (event, errorKey) => {
-        if (errorKey === 'hasPasswordError') {
-            this.validateInput(event, errorKey);
-        }
+        this.validateInput(event, errorKey);
 
         if (this.state.confirmPassword) {
             this.setState({
