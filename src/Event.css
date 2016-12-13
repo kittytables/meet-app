@@ -1,0 +1,8 @@
+input.time {
+    width: 65%;
+}
+
+select.time {
+    width: 25%;
+    margin-left: 6px;
+}

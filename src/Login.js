@@ -57,7 +57,7 @@ export default class Login extends Component {
                         onChange={(event) => this.setState({password: event.target.value})}
                         required/>
                 </label>
-                <button type="Submit" onClick={this.submit}>Submit</button>
+                <button type="button" onClick={this.submit}>Submit</button>
                 <div className="error-message">
                     {this.state.loginError} <br/>
                 </div>

@@ -46,12 +46,10 @@ export default class Signup extends Component {
     }
 
     validateInput = (event, errorKey) => {
-        if (event.target.value) {
-            const isValid = event.target.checkValidity();
-            this.setState({
-                [errorKey]: !isValid
-            });
-        }
+        const isValid = event.target.checkValidity();
+        this.setState({
+            [errorKey]: !isValid
+        });
     }
 
     validatePassword = (event, errorKey) => {

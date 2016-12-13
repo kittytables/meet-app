@@ -23,15 +23,18 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-        currentPage: 'login',
+        currentPage: '',
         signedIn: null,
-        user: null,
+        user: null
     };
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             this.setState({signedIn: true, user: user});
             this.setCurrentPage('list');
+        } else {
+            this.setState({signedIn: false});
+            this.setCurrentPage('login');
         }
     });
 
@@ -57,7 +60,7 @@ getUser = () => {
       return <Event db={this.ref} getUser={this.getUser} setCurrentPage={this.setCurrentPage}/>;
     }
 
-    if (this.state.currentPage === 'signup') {
+    if (this.state.currentPage === 'signup') {
       return <Signup setCurrentPage={this.setCurrentPage} fbase={fbase}/>;
     }
 
@@ -69,7 +72,9 @@ getUser = () => {
       return <List getUser={this.getUser} setCurrentPage={this.setCurrentPage} fbase={fbase}/>;
     }
 
-    return <div>404 page not found</div>;
+    if (this.state.currentPage !== '') {
+        return <div>404 page not found</div>;
+    }
   }
 
 
