@@ -6,6 +6,7 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "firebase": "^3.6.4",
     "react": "^15.3.1",
     "react-datepicker": "^0.34.0",
     "react-dom": "^15.3.1"
