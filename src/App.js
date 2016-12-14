@@ -93,8 +93,8 @@ getUser = () => {
                     {this.getCurrentPage()}
                 </div>
             </content>
+            <footer>Calendar icon by Khomsun Chaiwong from the Noun Project</footer>
         </div>
-
     );
 
   }
