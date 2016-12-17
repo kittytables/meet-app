@@ -26,8 +26,10 @@ export default class Event extends Component {
             guests: '',
             description: '',
 
+            hasTimeError: null,
             hasNameError: null,
             hasLocationError: null,
+            hasGuestsError: null,
             formError: ''
         };
     }
@@ -46,15 +48,17 @@ export default class Event extends Component {
         this.setState({
             formError: '',
             hasNameError: !this.state.name,
-            hasLocationError: !this.state.location
+            hasLocationError: !this.state.location,
+            hasGuestsError: !this.state.guests
         }, () => {
-            if (this.state.hasNameError || this.state.hasLocationError) {
+            if (this.state.hasNameError || this.state.hasLocationError || this.state.hasGuestsError) {
                 this.setState({
                     formError: 'Please fill out required form inputs. '
                 });
             }
 
-            if (this.state.hasTimeError && !this.state.hasNameError && !this.state.hasLocationError) {
+            if (this.state.hasTimeError && !this.state.hasNameError
+                && !this.state.hasLocationError && !this.state.hasGuestsError) {
                 this.setState({
                     formError: 'Please make sure end time is after the start time.'
                 });
@@ -64,7 +68,8 @@ export default class Event extends Component {
                 });
             }
 
-            if(!this.state.hasTimeError && !this.state.hasNameError && !this.state.hasLocationError) {
+            if(!this.state.hasTimeError && !this.state.hasNameError
+                && !this.state.hasLocationError && !this.state.hasGuestsError) {
                 this.setState({
                     formError: ''
                 });
@@ -97,6 +102,18 @@ export default class Event extends Component {
             }
 
             this.setState({[inputName]: time.format("hh:mm")});
+        }
+    }
+
+    setDate = (date, inputName) => {
+        if(date.isValid()) {
+            this.setState({[inputName]: date});
+
+            if(inputName === 'startDate') {
+                this.setState({
+                    endDate: moment(date).isAfter(this.state.endDate) ? date : this.state.endDate
+                });
+            }
         }
     }
 
@@ -135,7 +152,7 @@ export default class Event extends Component {
                 </label>
 
                 <label htmlFor="type"> Event Type<br/>
-                    <select id="type" name="Select" value={this.state.type}
+                    <select id="type" required name="Select" value={this.state.type}
                         onChange={(event) => this.setState({type: event.target.value})}>
                         <option value="General">General</option>
                         <option value="Birthday">Birthday</option>
@@ -156,12 +173,10 @@ export default class Event extends Component {
                     <DatePicker
                         id="startdate"
                         selected={this.state.startDate}
-                        onChange={(date) => this.setState({startDate: date,
-                                endDate: moment(date).isAfter(this.state.endDate) ? date : this.state.endDate
-                            }
-                        )}
+                        onChange={(date) => this.setDate(date, 'startDate')}
                         minDate={moment()}
-                        onBlur={this.validateTime}/>
+                        onBlur={this.validateTime}
+                        required/>
                 </label>
 
                 <label htmlFor="starttime">Start time <br/>
@@ -169,8 +184,9 @@ export default class Event extends Component {
                         value={this.state.starttime}
                         onChange={(event) => this.setTime(event, 'starttime')}
                         onBlur={this.validateTime}
+                        required
                     />
-                    <select id="starttime-2" name="Select" className="time" value={this.state.starttime2}
+                    <select required id="starttime-2" name="Select" className="time" value={this.state.starttime2}
                     onChange={(event) => this.setState({starttime2: event.target.value})} onBlur={(event) => this.validateTime(event)}>
                         <option value="am">AM</option>
                         <option value="pm">PM</option>
@@ -181,17 +197,19 @@ export default class Event extends Component {
                     <DatePicker
                         id="enddate"
                         selected={this.state.endDate}
-                        onChange={(date) => this.setState({endDate: date})}
+                        onChange={(date) => this.setDate(date, 'endDate')}
                         minDate={this.state.startDate}
-                        onBlur={this.validateTime}/>
+                        onBlur={this.validateTime}
+                        required/>
                 </label>
 
                 <label htmlFor="endtime">End time <br/>
                     <input id="endtime" type="time" className={this.state.hasTimeError ? 'time invalid' : 'time'}
                         value={this.state.endtime}
                         onChange={(event) => this.setTime(event, 'endtime')}
-                        onBlur={(event) => this.validateTime(event)}/>
-                    <select id="endtime-2" name="Select" className={this.state.hasTimeError ? 'time invalid' : 'time'}
+                        onBlur={(event) => this.validateTime(event)}
+                        required/>
+                    <select required id="endtime-2" name="Select" className={this.state.hasTimeError ? 'time invalid' : 'time'}
                         value={this.state.endtime2} onChange={(event) => this.setState({endtime2: event.target.value})}
                         onBlur={this.validateTime}>
                         <option value="am">AM</option>
@@ -199,10 +217,16 @@ export default class Event extends Component {
                     </select>
                 </label>
 
+                {this.state.hasTimeError && (
+                    <span className="error-message">Please make sure end time is after the start time.</span>
+                )}
+
                 <label htmlFor="guests">Guests<br/>
-                    <input id="guests" type="text"
+                    <input id="guests" type="text" required
+                        className={this.state.hasGuestsError ? 'invalid' : ''}
                         value={this.state.guests}
-                        onChange={(event) => this.setState({guests: event.target.value})}/>
+                        onChange={(event) => this.setState({guests: event.target.value})}
+                        onBlur={(event) => this.validateInput(event, 'hasGuestsError')}/>
                 </label>
 
                 <label htmlFor="description">Event Description<br/>

@@ -11,6 +11,7 @@ export default class Signup extends Component {
             email: '',
             password: '',
             confirmPassword: '',
+            city: '',
 
             hasNameError: null,
             hasEmailError: null,
@@ -30,7 +31,8 @@ export default class Signup extends Component {
 
             if (user) {
                 this.props.fbase.database().ref('users/' + user.uid).set({
-                    name: this.state.name
+                    name: this.state.name,
+                    city: this.state.city
                 });
             } else {
               console.log('error saving user info to database');
@@ -160,6 +162,17 @@ export default class Signup extends Component {
                         <span className="error-message">Please enter the same password value as above.</span>
                     )}
                 </label>
+
+                <label htmlFor="city">
+                    <span>City</span>
+                    <input
+                        value={this.state.city}
+                        onChange={(event) => this.setState({city: event.target.value})}
+                        id="city"
+                        type="text"
+                        autoComplete="shipping locality"
+                   />
+               </label>
 
                 <button
                     type="submit"
