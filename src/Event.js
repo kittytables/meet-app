@@ -229,7 +229,7 @@ export default class Event extends Component {
                         onBlur={(event) => this.validateInput(event, 'hasGuestsError')}/>
                 </label>
 
-                <label htmlFor="description">Event Description<br/>
+                <label htmlFor="description">Additional Information<br/>
                     <textarea id="description"
                         value={this.state.description}
                         onChange={(event) => this.setState({description: event.target.value})}></textarea>
